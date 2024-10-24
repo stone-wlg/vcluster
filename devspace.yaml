@@ -32,6 +32,19 @@ deployments:
           distro:
             k8s:
               enabled: true
+              controllerManager:
+                image: 
+                  registry: "registry.cn-hangzhou.aliyuncs.com/google_containers"
+                  repository: "kube-controller-manager"
+                  tag: "v1.31.1"
+              apiServer:
+                image:
+                  registry: registry.cn-hangzhou.aliyuncs.com/google_containers
+                  repository: kube-apiserver
+                  tag: "v1.31.1"                
+          coredns:
+            deployment:
+              image: "registry.cn-hangzhou.aliyuncs.com/google_containers/coredns:v1.11.1"
           statefulSet:
             image:
               registry: ""
@@ -223,3 +236,7 @@ commands:
   test: |-
     devspace purge -n ${DEVSPACE_NAMESPACE} --debug
     devspace dev -n ${DEVSPACE_NAMESPACE} --profile test-$@
+
+localRegistry:
+  image: registry.cn-hangzhou.aliyuncs.com/stone-wlg/registry:2.8.3
+  buildKitImage: registry.cn-hangzhou.aliyuncs.com/stone-wlg/buildkit:master-rootless

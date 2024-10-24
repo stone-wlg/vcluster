@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/loft-sh/vcluster/cmd/vcluster/cmd"
 
 	// Make sure dep tools picks up these dependencies
@@ -11,5 +13,6 @@ import (
 )
 
 func main() {
+	fmt.Println("=========================================================")
 	cmd.RunRoot()
 }
